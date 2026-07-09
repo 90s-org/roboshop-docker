@@ -36,7 +36,7 @@ services:
     - catalogue
     environment:
       CATALOGUE_HOST: catalogue
-      REDIS_HOST: "redis://redis:6379"
+      REDIS_HOST: "redis"
       CATALOGUE_PORT: 8080
   rabbitmq:
     image: rabbitmq:3
