@@ -38,6 +38,33 @@ services:
       CATALOGUE_HOST: catalogue
       REDIS_HOST: "redis"
       CATALOGUE_PORT: 8080
+  shipping:
+    build: ./shipping
+    image: joindevops/shipping:v1
+    container_name: shipping
+    depends_on:
+    - cart
+    - mysql
+    environment:
+      CART_ENDPOINT: "cart:8080"
+      DB_HOST: "mysql"
+
+  payment:
+    build: ./payment
+    image: joindevops/payment:v1
+    container_name: payment
+    depends_on:
+    - redis
+    - catalogue
+    environment:
+      CART_HOST: cart
+      CART_PORT: 8080
+      USER_HOST: user
+      USER_PORT: 8080
+      AMQP_HOST: rabbitmq
+      AMQP_USER: roboshop
+      AMQP_PASS: roboshop123
+
   rabbitmq:
     image: rabbitmq:3
     container_name: rabbitmq
