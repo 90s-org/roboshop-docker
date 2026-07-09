@@ -39,8 +39,7 @@ services:
       REDIS_HOST: "redis://redis:6379"
       CATALOGUE_PORT: 8080
   rabbitmq:
-    
-    image: joindevops/rabbitmq:3
+    image: rabbitmq:3
     container_name: rabbitmq
     environment:
       RABBITMQ_DEFAULT_USER: roboshop
